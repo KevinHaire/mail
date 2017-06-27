@@ -1,5 +1,6 @@
 <?php
 function sendMail($template, $contacts, $subject, $admin_template, $admin_contacts, $admin_subject) {
+
   include($_SERVER['DOCUMENT_ROOT']."/includes/site-settings.php");
   global $id;
   global $user_email;
@@ -12,13 +13,10 @@ function sendMail($template, $contacts, $subject, $admin_template, $admin_contac
   $mail->Host = "mail.smtp.com";
   $mail->Port = 80;
   $mail->SMTPAuth = true;
-  //Username to use for SMTP authentication
   $mail->Username = $smtp_username;
-  //Password to use for SMTP authentication
   $mail->Password = $smtp_password;
-  //Set who the message is to be sent from
-  // $mail->setFrom('no-reply@'.$live_url, $company_name);
   $mail->setFrom($company_email, $company_name);
+
   for ($i=0; $i < count($contacts); $i++) {
     $mail->Subject = $subject;
     $mail->msgHTML(file_get_contents('http://www.'.$live_url.'/mail/templates/'.$template.'?id='.$id), dirname(__FILE__));
@@ -27,7 +25,6 @@ function sendMail($template, $contacts, $subject, $admin_template, $admin_contac
     } else {
       $mail->addAddress($contacts[$i]['email'], $contacts[$i]['name']);
     }
-    //send the message, check for errors
     if (!$mail->send()) {
         echo "Mailer Error: " . $mail->ErrorInfo;
     }

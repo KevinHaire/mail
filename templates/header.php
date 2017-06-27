@@ -19,4 +19,3 @@ $btn_link = "color:#FFFFFF; font-family:Arial; font-size:15px; font-weight:norma
                         <img src='http://<?=$site_url?>/images/layout/<?=$email_logo?>' width='<?=$email_logo_width?>' height='<?=$email_logo_height?>' />
                       </a>
                       <div style="clear:both;"></div>
-                      <!-- <h2 style='margin-bottom:10px; color:#<?=$email_hex?>'><?=$company_name?></h2> -->
